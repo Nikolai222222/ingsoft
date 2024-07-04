@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Usuario - InvertEx</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            flex: 1;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">InvertEx</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#market">Mercado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trade">Intercambiar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#wallet">Cartera</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content">
+        <section id="user-profile" class="user-profile py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Perfil del Usuario</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>Información del Usuario</h3>
+                        <p><strong>Nombre:</strong> Juan Pérez</p>
+                        <p><strong>Email:</strong> juan.perez@example.com</p>
+                        <p><strong>Dirección:</strong> Calle Falsa 123, Ciudad, País</p>
+                        <p><strong>Edad:</strong> 30 años</p>
+                        <p><strong>Saldo Total:</strong> $50,000</p>
+                    </div>
+                    <div class="col-md-8">
+                        <h3>Movimientos</h3>
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Acción</th>
+                                    <th>Criptomoneda</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Fecha y Hora</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Compra</td>
+                                    <td>Bitcoin (BTC)</td>
+                                    <td>0.5</td>
+                                    <td>$15,000</td>
+                                    <td>2024-06-01 12:30 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Venta</td>
+                                    <td>Ethereum (ETH)</td>
+                                    <td>10</td>
+                                    <td>$20,000</td>
+                                    <td>2024-06-10 1:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Compra</td>
+                                    <td>Ripple (XRP)</td>
+                                    <td>1000</td>
+                                    <td>$500</td>
+                                    <td>2024-06-15 1:30 PM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2024 InvertEx. Todos los derechos reservados.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#home" class="text-white">Inicio</a></li>
+                <li class="list-inline-item"><a href="#market" class="text-white">Mercado</a></li>
+                <li class="list-inline-item"><a href="#trade" class="text-white">Intercambiar</a></li>
+                <li class="list-inline-item"><a href="#wallet" class="text-white">Cartera</a></li>
+                <li class="list-inline-item"><a href="#contact" class="text-white">Contacto</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
