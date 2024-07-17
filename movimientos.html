@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimientos y Fluctuaciones en Criptomonedas</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Evita que el video haga scroll */
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover; /* Cubrir todo el área del contenedor */
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40; /* Color oscuro para el título */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+        }
+        table th, table td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 12px;
+        }
+        table th {
+            background-color: #343a40; /* Color oscuro para los encabezados */
+            color: white; /* Texto blanco para los encabezados */
+        }
+        table td {
+            background-color: #f2f2f2; /* Fondo gris claro para las celdas de datos */
+        }
+        .table-responsive {
+            overflow-x: auto; /* Scroll horizontal si la tabla es muy ancha */
+        }
+        .chart-container {
+            margin-top: 20px;
+            border: 1px solid #ddd; /* Borde del contenedor de gráfico */
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #fff; /* Fondo blanco para los gráficos */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+        }
+        canvas {
+            max-width: 100%;
+            height: auto; /* Ajusta la altura automáticamente */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="./index.html">InvertEx</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#market">Mercado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trade">Intercambiar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./profile.html">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./movimientos.html">Movimiento</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <video src="./img/fondo.mp4" autoplay muted loop class="background"></video>
+
+    <div class="container">
+        <h1>Movimientos y Fluctuaciones de Usuarios</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Hora</th>
+                        <th>Usuario</th>
+                        <th>Moneda</th>
+                        <th>Cantidad</th>
+                        <th>Tipo de Operación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10:00 AM</td>
+                        <td>Juan Pérez</td>
+                        <td>Bitcoin (BTC)</td>
+                        <td>0.5 BTC</td>
+                        <td>Compra</td>
+                    </tr>
+                    <tr>
+                        <td>11:30 AM</td>
+                        <td>María García</td>
+                        <td>Ethereum (ETH)</td>
+                        <td>2 ETH</td>
+                        <td>Venta</td>
+                    </tr>
+                    <tr>
+                        <td>1:45 PM</td>
+                        <td>Pablo Rodríguez</td>
+                        <td>Ripple (XRP)</td>
+                        <td>500 XRP</td>
+                        <td>Compra</td>
+                    </tr>
+                    <tr>
+                        <td>3:15 PM</td>
+                        <td>Luisa Martínez</td>
+                        <td>Litecoin (LTC)</td>
+                        <td>10 LTC</td>
+                        <td>Venta</td>
+                    </tr>
+                    <!-- Más filas de datos según sea necesario -->
+                </tbody>
+            </table>
+        </div>
+
+        
+        <!-- Gráficos de Fluctuación -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <canvas id="btcChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <canvas id="ethChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <canvas id="xrpChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <canvas id="ltcChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 InvertEx. Todos los derechos reservados.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#home" class="text-white">Inicio</a></li>
+                <li class="list-inline-item"><a href="#market" class="text-white">Mercado</a></li>
+                <li class="list-inline-item"><a href="#trade" class="text-white">Intercambiar</a></li>
+                <li class="list-inline-item"><a href="#user-profile" class="text-white">Perfil</a></li>
+                <li class="list-inline-item"><a href="#contact" class="text-white">Contacto</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./js/scripts.js"></script>
+
+    
+
+    <script>
+        // Función para generar datos aleatorios de fluctuación
+        function generateRandomData() {
+            return Math.random() > 0.5 ? Math.random() * 100 : -Math.random() * 100;
+        }
+
+        // Datos iniciales para los gráficos (ejemplo de datos de fluctuación)
+        let dataBTC = {
+            labels: ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM'],
+            datasets: [{
+                label: 'Bitcoin (BTC)',
+                data: [9500, 9400, 9600, 9800, 9700, 9900],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)', // Fondo semi-transparente
+                borderWidth: 1
+            }]
+        };
+
+        let dataETH = {
+            labels: ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM'],
+            datasets: [{
+                label: 'Ethereum (ETH)',
+                data: [200, 210, 220, 230, 240, 250],
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Fondo semi-transparente
+                borderWidth: 1
+            }]
+        };
+
+        let dataXRP = {
+            labels: ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM'],
+            datasets: [{
+                label: 'Ripple (XRP)',
+                data: [0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Fondo semi-transparente
+                borderWidth: 1
+            }]
+        };
+
+        let dataLTC = {
+            labels: ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM'],
+            datasets: [{
+                label: 'Litecoin (LTC)',
+                data: [100, 110, 120, 130, 140, 150],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)', // Fondo semi-transparente
+                borderWidth: 1
+            }]
+        };
+
+        // Función para actualizar los datos de los gráficos
+        function updateChartData(chart, newData) {
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.push(newData);
+            });
+            chart.data.labels.push(new Date().toLocaleTimeString());
+            chart.update();
+        }
+
+        // Crear gráficos
+        const btcChart = new Chart(document.getElementById('btcChart'), {
+            type: 'line',
+            data: dataBTC,
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        const ethChart = new Chart(document.getElementById('ethChart'), {
+            type: 'line',
+            data: dataETH,
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        const xrpChart = new Chart(document.getElementById('xrpChart'), {
+            type: 'line',
+            data: dataXRP,
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        const ltcChart = new Chart(document.getElementById('ltcChart'), {
+            type: 'line',
+            data: dataLTC,
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Actualizar gráficos cada 5 segundos
+        setInterval(() => {
+            updateChartData(btcChart, generateRandomData());
+            updateChartData(ethChart, generateRandomData());
+            updateChartData(xrpChart, generateRandomData());
+            updateChartData(ltcChart, generateRandomData());
+        }, 5000);
+    </script>
+
+</body>
+</html>

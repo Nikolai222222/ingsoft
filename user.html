@@ -7,28 +7,75 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-
     <style>
         body {
-            background-color: rgb(182, 180, 180);
+            background-color: rgb(38, 50, 56); /* Fondo oscuro */
+            color: white; /* Texto en blanco */
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cubrir todo el área del contenedor */
+            z-index: -1;
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            filter: brightness(50%); /* Ajuste opcional para oscurecer el video */
+        }
+        .hero-content {
+            z-index: 1;
         }
         .trade {
-            background-color: rgb(182, 180, 180);
+            background: rgba(0, 0, 0, 0); /* Fondo oscuro */
+            color: white; /* Texto en blanco */
+            padding: 80px 0; /* Aumentar el espacio interno */
+        }
+        .market {
+            background-color: rgb(38, 50, 56); /* Fondo oscuro */
+            color: white; /* Texto en blanco */
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0);
+        }
+        .user-profile {
+            background-color: rgb(255, 255, 255); /* Fondo blanco para el perfil de usuario */
+            color: rgb(255, 255, 255); /* Texto oscuro */
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0);
         }
     </style>
+</head>
+<body>
+    <video src="./img/fondo.mp4" autoplay muted loop class="background"></video>
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">InvertEx</a>
+            <a class="navbar-brand" href="./index.html">InvertEx</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Inicio</a>
+                        <a class="nav-link" href="#home">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#market">Mercado</a>
@@ -40,21 +87,14 @@
                         <a class="nav-link" href="./profile.html">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contacto</a>
+                        <a class="nav-link" href="./movimientos.html">Movimiento</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <section id="home" class="hero text-white d-flex align-items-center">
-        <div class="container text-center">
-            <h1 class="display-4">Bienvenido a InvertEx</h1>
-            <p class="lead">La mejor plataforma para invertir y comerciar con criptomonedas</p>
-        </div>
-    </section>
-
-    <section id="market" class="market py-5">
+    <section id="market" class="market">
         <div class="container">
             <h2 class="text-center mb-4">Mercado</h2>
             <div class="row">
@@ -80,7 +120,7 @@
         </div>
     </section>
 
-    <section id="trade" class="trade py-5">
+    <section id="trade" class="trade">
         <div class="container text-center">
             <h2>Intercambiar</h2>
             <p>Intercambia tus criptomonedas de forma rápida y segura.</p>
@@ -88,56 +128,7 @@
         </div>
     </section>
 
-    <section id="user-profile" class="user-profile py-5 bg-light" style="display: none;">
-        <div class="container">
-            <h2 class="text-center mb-4">Perfil del Usuario</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>Información del Usuario</h3>
-                    <p><strong>Nombre:</strong> Juan Pérez</p>
-                    <p><strong>Email:</strong> juan.perez@example.com</p>
-                    <p><strong>Saldo Total:</strong> $50,000</p>
-                </div>
-                <div class="col-md-8">
-                    <h3>Movimientos</h3>
-                    <table class="table table-striped table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Acción</th>
-                                <th>Criptomoneda</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>Hora</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Compra</td>
-                                <td>Bitcoin (BTC)</td>
-                                <td>0.5</td>
-                                <td>$15,000</td>
-                                <td>12:30 PM</td>
-                            </tr>
-                            <tr>
-                                <td>Venta</td>
-                                <td>Ethereum (ETH)</td>
-                                <td>10</td>
-                                <td>$20,000</td>
-                                <td>1:00 PM</td>
-                            </tr>
-                            <tr>
-                                <td>Compra</td>
-                                <td>Ripple (XRP)</td>
-                                <td>1000</td>
-                                <td>$500</td>
-                                <td>1:30 PM</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
@@ -146,7 +137,7 @@
                 <li class="list-inline-item"><a href="#home" class="text-white">Inicio</a></li>
                 <li class="list-inline-item"><a href="#market" class="text-white">Mercado</a></li>
                 <li class="list-inline-item"><a href="#trade" class="text-white">Intercambiar</a></li>
-                <li class="list-inline-item"><a href="#wallet" class="text-white">Cartera</a></li>
+                <li class="list-inline-item"><a href="#user-profile" class="text-white">Perfil</a></li>
                 <li class="list-inline-item"><a href="#contact" class="text-white">Contacto</a></li>
             </ul>
         </div>
@@ -157,16 +148,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        // Función para generar datos aleatorios entre un rango
+        function generarDatosAleatorios(min, max, cantidad) {
+            let datos = [];
+            for (let i = 0; i < cantidad; i++) {
+                datos.push(Math.random() * (max - min) + min);
+            }
+            return datos;
+        }
+
+        // Configuración inicial de los gráficos con datos aleatorios
         const btcChart = new Chart(document.getElementById('btcChart'), {
             type: 'line',
             data: {
                 labels: ['12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM'],
                 datasets: [{
-                    label: 'Bitcoin (BTC) 56.923.241,42CLP',
-                    data: [9000, 15500, 18000, 19000, 33500],
+                    label: 'Bitcoin (BTC)',
+                    data: generarDatosAleatorios(8000, 35000, 5),
                     borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo negro semi-transparente
                     borderWidth: 2,
-                    fill: false
+                    pointBackgroundColor: 'white', // Puntos blancos
+                    fill: true
                 }]
             },
             options: {
@@ -174,20 +177,20 @@
                     x: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'black' // Cambia el color de las letras del eje X a negro
+                            color: 'white'
                         }
                     },
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'black' // Cambia el color de las letras del eje Y a negro
+                            color: 'white'
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'black' // Cambia el color de las etiquetas de la leyenda a negro
+                            color: 'white'
                         }
                     }
                 }
@@ -199,11 +202,13 @@
             data: {
                 labels: ['12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM'],
                 datasets: [{
-                    label: 'Ethereum (ETH) 3.202.001,59CLP',
-                    data: [200, 10050, 20050, 6000, 100050],
+                    label: 'Ethereum (ETH)',
+                    data: generarDatosAleatorios(100, 100000, 5),
                     borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 2,
-                    fill: false
+                    backgroundColor: 'rgba(0, 0, 0, 0.9)', // Fondo negro semi-transparente
+                    borderWidth: 3,
+                    pointBackgroundColor: 'white', // Puntos blancos
+                    fill: true
                 }]
             },
             options: {
@@ -211,20 +216,20 @@
                     x: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'black' // Cambia el color de las letras del eje X a negro
+                            color: 'white'
                         }
                     },
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'black' // Cambia el color de las letras del eje Y a negro
+                            color: 'white'
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'black' // Cambia el color de las etiquetas de la leyenda a negro
+                            color: 'white'
                         }
                     }
                 }
@@ -236,11 +241,13 @@
             data: {
                 labels: ['12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM'],
                 datasets: [{
-                    label: 'Ripple (XRP) 451,16CLP',
-                    data: [0.10, 0.30, 0.20, 1.50, 1.20],
+                    label: 'Ripple (XRP)',
+                    data: generarDatosAleatorios(0.05, 1.5, 5),
                     borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo negro semi-transparente
                     borderWidth: 2,
-                    fill: false
+                    pointBackgroundColor: 'white', // Puntos blancos
+                    fill: true
                 }]
             },
             options: {
@@ -248,20 +255,20 @@
                     x: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'black' // Cambia el color de las letras del eje X a negro
+                            color: 'white'
                         }
                     },
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'black' // Cambia el color de las letras del eje Y a negro
+                            color: 'white'
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'black' // Cambia el color de las etiquetas de la leyenda a negro
+                            color: 'white'
                         }
                     }
                 }
@@ -273,11 +280,13 @@
             data: {
                 labels: ['12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM'],
                 datasets: [{
-                    label: 'Litecoin (LTC) 69.463,98CLP',
-                    data: [500, 700, 200, 400, 2000],
+                    label: 'Litecoin (LTC)',
+                    data: generarDatosAleatorios(100, 2500, 5),
                     borderColor: 'rgba(153, 102, 255, 1)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo negro semi-transparente
                     borderWidth: 2,
-                    fill: false
+                    pointBackgroundColor: 'white', // Puntos blancos
+                    fill: true
                 }]
             },
             options: {
@@ -285,31 +294,42 @@
                     x: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'black' // Cambia el color de las letras del eje X a negro
+                            color: 'white'
                         }
                     },
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'black' // Cambia el color de las letras del eje Y a negro
+                            color: 'white'
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'black' // Cambia el color de las etiquetas de la leyenda a negro
+                            color: 'white'
                         }
                     }
                 }
             }
         });
 
-        document.querySelector('a[href="#wallet"]').addEventListener('click', function(event) {
-            event.preventDefault();
-            document.getElementById('user-profile').style.display = 'block';
-            document.getElementById('user-profile').scrollIntoView({ behavior: 'smooth' });
-        });
+        // Función para actualizar los datos de los gráficos cada 2 segundos
+        function actualizarDatos() {
+            btcChart.data.datasets[0].data = generarDatosAleatorios(8000, 35000, 5);
+            ethChart.data.datasets[0].data = generarDatosAleatorios(100, 100000, 5);
+            xrpChart.data.datasets[0].data = generarDatosAleatorios(0.05, 1.5, 5);
+            ltcChart.data.datasets[0].data = generarDatosAleatorios(100, 2500, 5);
+
+            // Actualizar los gráficos
+            btcChart.update();
+            ethChart.update();
+            xrpChart.update();
+            ltcChart.update();
+        }
+
+        // Actualizar datos cada 2 segundos
+        setInterval(actualizarDatos, 2000);
     </script>
 </body>
 </html>
